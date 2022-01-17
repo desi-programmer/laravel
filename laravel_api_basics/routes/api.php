@@ -69,5 +69,13 @@ Route::match(['get', 'post'], '/specific', function (Request $request) {
 
 
 // Using a Controller 
-Route::get('/controller', [BasicRouter::class, 'index']);
-Route::post('/controller', [BasicRouter::class, 'create']);
+Route::get('/posts/{id}', [BasicRouter::class, 'index']);
+Route::post('/posts', [BasicRouter::class, 'create']);
+Route::get('/params/{username?}', [BasicRouter::class, 'params']);
+
+// Middlewares
+
+Route::any('/log', function (Request $request){
+    error_log($request->method()." Request");
+    return "Welcome";
+});
