@@ -21,5 +21,47 @@ Route::get('/', function(Request $request){
     return $data;
 });
 
+// GET, POST, PUT and DELETE Route 
+Route::get('/routes', function(Request $request){
+    $data = [
+        'message' => "A GET Request Route"
+    ];
+    return $data;
+});
 
+Route::post('/routes', function(Request $request){
+    $data = [
+        'message' => "A POST Request Route"
+    ];
+    return $data;
+});
 
+Route::put('/routes', function(Request $request){
+    $data = [
+        'message' => "A PUT Request Route"
+    ];
+    return $data;
+});
+
+Route::delete('/routes', function(Request $request){
+    $data = [
+        'message' => "A DELETE Request Route"
+    ];
+    return $data;
+});
+
+// Handle all Methods 
+Route::any('/any', function(Request $request){
+    $data = [
+        'message' => $request->method(),
+    ];
+    return $data;
+});
+
+// Handle some specific Methods
+Route::match(['get', 'post'], '/specific', function (Request $request) {
+    $data = [
+        'message' => $request->method(),
+    ];
+    return $data;
+});
