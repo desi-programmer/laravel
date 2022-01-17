@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BasicRouter;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,3 +66,8 @@ Route::match(['get', 'post'], '/specific', function (Request $request) {
     ];
     return $data;
 });
+
+
+// Using a Controller 
+Route::get('/controller', [BasicRouter::class, 'index']);
+Route::post('/controller', [BasicRouter::class, 'create']);
