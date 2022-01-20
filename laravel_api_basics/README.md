@@ -4,6 +4,14 @@
     - GET,POST,PATCH,DELETE
     - all, match
 
+## `Using This Project`
+
+    1. clone this repo
+    2. cd <this_repo>
+    3. composer install
+
+
+
 ## `Adding a Controller`
 
     NOTE : $request['key'] searches for the key in query and parameter, If found in both, Query is returned
