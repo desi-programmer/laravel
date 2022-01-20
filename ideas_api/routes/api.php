@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\IdeasController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::get('/', function (Request $request) {
+    return [
+        "msg" => "Welcome"
+    ];
 });
+
+
+Route::get('/ideas', [IdeasController::class, 'index']);
+Route::post('/ideas', [IdeasController::class, 'store']);
+Route::put('/ideas/{id}', [IdeasController::class, 'update']);
+Route::delete('/ideas/{id}', [IdeasController::class, 'destroy']);

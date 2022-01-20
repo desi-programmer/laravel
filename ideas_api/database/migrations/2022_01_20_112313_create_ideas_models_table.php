@@ -16,6 +16,9 @@ class CreateIdeasModelsTable extends Migration
         Schema::create('ideas_models', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->boolean('completed')->default(0);
+            $table->char('title', 100);
+            $table->mediumText('description');
         });
     }
 
