@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c61ff82cbf0142a401a48a8161e1595a",
+    "content-hash": "dc43b0918a6898752d31b9d864863397",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -958,6 +958,53 @@
                 }
             ],
             "time": "2021-10-06T17:43:30+00:00"
+        },
+        {
+            "name": "ichtrojan/laravel-otp",
+            "version": "v1.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ichtrojan/laravel-otp.git",
+                "reference": "3fe67dfca3837c924bf968c019c7662caaab3740"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ichtrojan/laravel-otp/zipball/3fe67dfca3837c924bf968c019c7662caaab3740",
+                "reference": "3fe67dfca3837c924bf968c019c7662caaab3740",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Ichtrojan\\Otp\\OtpServiceProvider"
+                    ],
+                    "aliases": {
+                        "Otp": "Ichtrojan\\Otp\\Otp"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ichtrojan\\Otp\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Okoh",
+                    "email": "michael@okoh.co.uk"
+                }
+            ],
+            "description": "A simple package to generate and validate OTPs",
+            "support": {
+                "issues": "https://github.com/ichtrojan/laravel-otp/issues",
+                "source": "https://github.com/ichtrojan/laravel-otp/tree/v1.4.1"
+            },
+            "time": "2021-05-13T09:01:34+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2846,6 +2893,76 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "seshac/otp-generator",
+            "version": "0.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/seshac/otp-generator.git",
+                "reference": "315ec0502caaf7d23616ecd4b1abb5e8e352a0e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/seshac/otp-generator/zipball/315ec0502caaf7d23616ecd4b1abb5e8e352a0e1",
+                "reference": "315ec0502caaf7d23616ecd4b1abb5e8e352a0e1",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3|7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.3",
+                "vimeo/psalm": "^3.11|^4.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Seshac\\Otp\\OtpServiceProvider"
+                    ],
+                    "aliases": {
+                        "Otp": "Seshac\\Otp\\OtpFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Seshac\\Otp\\": "src",
+                    "Seshac\\Otp\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "sesha",
+                    "email": "seshadriece008@gmail.com",
+                    "homepage": "https://sesha.in",
+                    "role": "Developer"
+                }
+            ],
+            "description": "OTP Generator and Validator for Laravel Applications",
+            "homepage": "https://github.com/seshac/otp-generator",
+            "keywords": [
+                "laravel",
+                "otp-generator",
+                "seshac"
+            ],
+            "support": {
+                "issues": "https://github.com/seshac/otp-generator/issues",
+                "source": "https://github.com/seshac/otp-generator/tree/0.0.7"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/seshac",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-12-12T15:58:54+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

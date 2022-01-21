@@ -28,3 +28,25 @@ Apply Migration
 php artisan migrate
 ```
 
+## using `laravel-otp` for generating OTP
+
+
+```sh
+composer require seshac/otp-generator
+```
+
+Publish and run migrations
+
+```php
+php artisan vendor:publish --provider="Seshac\Otp\OtpServiceProvider" --tag="migrations"
+php artisan migrate
+```
+
+Publish config file
+
+```php
+php artisan vendor:publish --provider="Seshac\Otp\OtpServiceProvider" --tag="config"
+```
+
+[otp-generator Github](https://github.com/seshac/otp-generator)
+

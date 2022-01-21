@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+use Seshac\Otp\Otp;
+
 
 class AuthController extends Controller
 {
@@ -42,6 +44,13 @@ class AuthController extends Controller
         return response($response, 200);
     }
 
+    public function logout(Request $request){
+        auth()->user()->tokens()->delete();
+
+        return [
+            'message' => 'Logged out',
+        ];
+    }
 
     public function login(Request $request){
         $fields = $request->validate([
@@ -68,4 +77,78 @@ class AuthController extends Controller
 
         return response($response, 200);
     }
-}
+
+    public function profile(Request $request){
+        // get user
+        return $request->user();
+    }
+    
+    // verify email for forgot password
+    public function send_otp(Request $request){
+        
+        // validate
+        $fields = $request->validate([
+            'email' => 'required'
+        ]);
+        
+        // get user email and check if the user exists
+        
+        $user = User::where('email', $fields['email'])->first();
+        
+        if(is_null($user)){
+            // user doesn't exists
+            $response = [
+                'msg' => "User Doesn't exist !"
+            ];
+            return response($response, 400);
+        }else{
+            // user exists
+            // generate OTP
+            error_log($user['email']);
+            $otp = Otp::generate($user['email']);
+            
+            // send email or whatever you want to
+            
+            // send it back in response
+            // $response = [
+                //     'otp' => $otp
+                // ];
+                
+                // or
+                $response = [
+                    'otp' => $otp->token
+                ];
+                return response($response, 200);
+            }
+        }
+
+
+        public function change_password(Request $request){
+
+            // validate email and otp in body
+            $fields = $request->validate([
+                'email' => 'required',
+                'otp' => 'required',
+                'password' => 'required|confirmed'
+            ]);
+
+            // verify otp
+            $verify = Otp::validate($fields['email'], $fields['otp']);
+
+            if($verify->status){
+                // otp matches
+                // change password 
+                $user = User::where('email', $fields['email'])->first();
+                $user['password'] = bcrypt($fields['password']);
+                $user->save();
+                return $user;
+
+            }else{
+                $response = [
+                    'msg' => "OTP Doesn't match !",
+                ];
+                return response($response, 400);
+            }
+        }
+    }
+    

@@ -27,3 +27,12 @@ Route::get('/', function (Request $request) {
 
 Route::post('/user/register', [AuthController::class , 'register']);
 Route::post('/user/login', [AuthController::class , 'login']);
+
+// a protected route
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/user/logout', [AuthController::class , 'logout']);
+    Route::get('/user/profile', [AuthController::class , 'profile']);
+});
+
+Route::post('/user/send_otp', [AuthController::class , 'send_otp']);
+Route::post('/user/change_password', [AuthController::class , 'change_password']);
