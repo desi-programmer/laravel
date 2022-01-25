@@ -21,18 +21,18 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->tinyText('username');
-            $table->tinyText('instagram');
-            $table->tinyText('facebook');
-            $table->tinyText('twitter');
-            $table->tinyText('youtube');
-            $table->tinyText('reddit');
-            $table->tinyText('behance');
-            $table->tinyText('github');
-            $table->tinyText('gitlab');
-            $table->tinyText('whatsapp');
-            $table->tinyText('tagline');
-            $table->tinyText('image');
+            $table->tinyText('username')->nullable();
+            $table->tinyText('instagram')->nullable();
+            $table->tinyText('facebook')->nullable();
+            $table->tinyText('twitter')->nullable();;
+            $table->tinyText('youtube')->nullable();;
+            $table->tinyText('reddit')->nullable();;
+            $table->tinyText('behance')->nullable();;
+            $table->tinyText('github')->nullable();;
+            $table->tinyText('gitlab')->nullable();;
+            $table->tinyText('whatsapp')->nullable();;
+            $table->tinyText('tagline')->nullable();;
+            $table->tinyText('image')->nullable();;
         });
     }
 

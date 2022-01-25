@@ -150,5 +150,43 @@ class AuthController extends Controller
                 return response($response, 400);
             }
         }
+
+        public function update(Request $request){
+        
+            // update whatever user has sent
+            // TODO : Cross check so that You don;t update crucial data
+            $user = user::find($request->user()['id']);
+            $user->update($request->all());
+            return $user;
+
+        }
+
+        public function upload_image(Request $request){
+
+            $request->validate(['image' => 'required|image']);
+
+            $file = $request->file('image');
+            if (!$file->isValid()) {
+                return response()->json(['invalid_file_upload'], 400);
+            }
+            $path = public_path() . '/storage/uploads/';
+
+            // TODO : Use uuid to generate unique names
+            $file->move($path, $file->getClientOriginalName());
+
+            // update in database
+            $user = user::find($request->user()['id']);
+
+            // path for public 
+            $database_path  = '/storage/uploads/'.$file->getClientOriginalName();
+            $user->update([
+                'image' => asset($database_path),
+            ]);
+            return $user;
+
+            // $file = $request->file('image');
+            // return $file->extension();
+        }
+
     }
     

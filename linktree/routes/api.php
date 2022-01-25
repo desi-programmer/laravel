@@ -31,4 +31,9 @@ Route::post('/user/login', [AuthController::class , 'login']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user/logout', [AuthController::class , 'logout']);
     Route::get('/user/profile', [AuthController::class , 'profile']);
+    Route::put('/user/profile', [AuthController::class , 'update']);
+    Route::post('/user/upload_image', [AuthController::class , 'upload_image']);
 });
+
+Route::post('/user/send_otp', [AuthController::class , 'send_otp']);
+Route::post('/user/change_password', [AuthController::class , 'change_password']);
