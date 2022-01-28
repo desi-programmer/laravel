@@ -79,3 +79,10 @@ Route::any('/log', function (Request $request){
     error_log($request->method()." Request");
     return "Welcome";
 });
+
+// [ matched to /v1/users ]
+Route::prefix('v1')->group(function () {
+    Route::get('/users', function () {
+        return "v1";
+    });
+});
