@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\IdeasModel;
+
+use App\Models\IdeasModal;
 
 class IdeasController extends Controller
 {
@@ -14,7 +15,7 @@ class IdeasController extends Controller
      */
     public function index(){
         //
-        return IdeasModel::all();
+        return IdeasModal::all();
     }
 
     /**
@@ -24,22 +25,27 @@ class IdeasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        //
-        // Static Create Products
-        // return IdeasModel::create([
-        //     'title' => "test Title",
-        //     'description' => "Test Description",
+        // static Values
+        // return IdeasModal::create([
+        //     'title' => "Test Title",
+        //     "description" => "Test Description"
         // ]);
 
-        // accept all 
-        // return IdeasModel::create($request->all());
+        // pass all values
+        // return IdeasModal::create($request->all());
         
-        // with validation
+        // pass by keys
+        // return IdeasModal::create([
+        //     'title' => $request->all()['title'],
+        //     "description" => $request->all()['description']
+        // ]);
+
+        // validating the request 
         $request->validate([
             'title' => 'required',
-            'description' => 'required',
+            'description' => 'required'
         ]);
-        return IdeasModel::create($request->all());
+        return IdeasModal::create($request->all());
     }
 
     /**
@@ -48,7 +54,8 @@ class IdeasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
+    public function show($id)
+    {
         //
     }
 
@@ -59,13 +66,22 @@ class IdeasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id){
+    public function update(Request $request, $id)
+    {
         //
-        $idea = IdeasModel::find($id);
+        $idea = IdeasModal::find($id);
+
+        if(is_null($idea)){
+            $data = [
+                "msg" => "Enter a valid ID"
+            ];
+            return response( $data, 400);
+        }
 
         $idea->update($request->all());
 
         return $idea;
+
     }
 
     /**
@@ -74,8 +90,9 @@ class IdeasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
+    public function destroy($id)
+    {
         //
-        return IdeasModel::destroy($id);
+        return IdeasModal::destroy($id);
     }
 }
